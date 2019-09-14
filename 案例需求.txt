@@ -1,0 +1,11 @@
+1.需求：实现用户信息的增删改查操作
+2.设计：
+    1.技术选型：Servlet + JSP + MySQL + JDBCTemplate + Druid + BeanUtils + Tomcat
+    2.数据库设计：
+3.开发：
+    1.环境搭建
+        1.创建数据库环境
+        2.创建项目，导入需要的jar包
+    2.编码
+4.测试
+5.部署运维
