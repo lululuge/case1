@@ -26,7 +26,7 @@
 <body>
 <div class="container">
     <center><h3>添加联系人页面</h3></center>
-    <form action="" method="post">
+    <form action="${pageContext.request.contextPath}/addUserServlet" method="post">
         <div class="form-group">
             <label for="name">姓名：</label>
             <input type="text" class="form-control" id="name" name="name" placeholder="请输入姓名">
@@ -34,8 +34,8 @@
 
         <div class="form-group">
             <label>性别：</label>
-            <input type="radio" name="sex" value="男" checked="checked"/>男
-            <input type="radio" name="sex" value="女"/>女
+            <input type="radio" name="gender" value="male" checked="checked"/>male
+            <input type="radio" name="gender" value="female"/>female
         </div>
 
         <div class="form-group">
@@ -46,9 +46,14 @@
         <div class="form-group">
             <label for="address">籍贯：</label>
             <select name="address" class="form-control" id="address">
-                <option value="陕西">陕西</option>
-                <option value="北京">北京</option>
-                <option value="上海">上海</option>
+                <option value="beijing">beijing</option>
+                <option value="tianjin">tianjin</option>
+                <option value="shanghai">shanghai</option>
+                <option value="chongqing">chongqing</option>
+                <option value="hebei">hebei</option>
+                <option value="shanxi">shanxi</option>
+                <option value="liaoning">liaoning</option>
+                <option value="jilin">jilin</option>
             </select>
         </div>
 
