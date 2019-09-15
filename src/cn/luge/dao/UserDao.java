@@ -5,15 +5,29 @@ import cn.luge.domain.User;
 import java.util.List;
 
 public interface UserDao {
-    public List<User> findAll();
+    List<User> findAll();
 
-    public User findUserByUsernameAndPassword(String username, String password);
+    User findUserByUsernameAndPassword(String username, String password);
 
-    public void add(User user);
+    void add(User user);
 
-    public void delete(int id);
+    void delete(int id);
 
-    public User findUserById(int id);
+    User findUserById(int id);
 
-    public void update(User user);
+    void update(User user);
+
+    /**
+     * 查询总记录数
+     * @return
+     */
+    int findTotalCount();
+
+    /**
+     * 分页查询
+     * @param start
+     * @param rows
+     * @return
+     */
+    List<User> findByPage(int start, int rows);
 }

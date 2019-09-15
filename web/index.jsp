@@ -19,7 +19,7 @@
 <body>
   <div>${user.name},欢迎您！</div>
   <div align="center">
-    <a href="${pageContext.request.contextPath}/userListServlet" style="text-decoration:none;font-size:33px">点击进入用户管理系统</a>
+    <a href="${pageContext.request.contextPath}/findUserByPageServlet" style="text-decoration:none;font-size:33px">点击进入用户管理系统</a>
   </div>
 </body>
 </html>

@@ -1,19 +1,24 @@
 package cn.luge.service;
 
+import cn.luge.domain.PageBean;
 import cn.luge.domain.User;
 
 import java.util.List;
 
 public interface UserService {
-    public List<User> findAll();
+    List<User> findAll();
 
-    public User login(User user);
+    User login(User user);
 
-    public void addUser(User user);
+    void addUser(User user);
 
-    public void deleteUser(String id);
+    void deleteUser(String id);
 
-    public User findUserById(String id);
+    User findUserById(String id);
 
-    public void updateUser(User user);
+    void updateUser(User user);
+
+    void deleteSelectedUsers(String[] ids);
+
+    PageBean<User> findUserByPage(String currentPage_str, String rows_str);
 }

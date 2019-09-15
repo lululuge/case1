@@ -29,11 +29,47 @@
     <script>
         function deleteUser(id) {
             // 用户安全提示
-            if (confirm("您确定要删除吗？")) {
+            if (confirm("您确定要删除该用户吗？")) {
                 location.href = "${pageContext.request.contextPath}/deleteUserServlet?id=" + id;
             }
         }
 
+        function deleteSelected() {
+            // 用户安全提示
+            if (confirm("您确定要删除选中的用户吗？")) {
+                // 判断选中条目是否为空
+                var flag = false;
+                var cbs = document.getElementsByName("checkbox_id");
+                // 遍历cbs，看是否有被选中的条目(为了防止空指针异常)
+                for (var i = 0; i < cbs.length; i++) {
+                    if (cbs[i].checked) {
+                        flag = true;
+                        break;
+                    }
+                }
+                if (flag) {
+                    // 实现表单的提交功能
+                    document.getElementById("form").submit();
+                }
+
+            }
+        }
+
+        window.onload = function () {
+            // 实现全选功能
+            // 获取全选按钮
+            var firstCb = document.getElementById("firstCb");
+            firstCb.onclick = function () {
+                // 获取列表中所有的checkbox
+                var cbs = document.getElementsByName("checkbox_id");
+                // 遍历cbs，设置checked属性
+                for (var i = 0; i < cbs.length; i++) {
+                    cbs[i].checked = this.checked;
+                }
+
+
+            }
+        }
     </script>
 </head>
 <body>
@@ -58,36 +94,41 @@
     </div>
     <div style="float: right;margin: 5px">
         <a class="btn btn-primary" href="${pageContext.request.contextPath}/add.jsp">添加联系人</a>
-        <a class="btn btn-primary" href="${pageContext.request.contextPath}/">删除选中</a>
+        <a class="btn btn-primary" href="javascript:deleteSelected()">删除选中</a>
     </div>
-    <table border="1" class="table table-bordered table-hover">
-        <tr class="success">
-            <th><input type="checkbox"></th>
-            <th>编号</th>
-            <th>姓名</th>
-            <th>性别</th>
-            <th>年龄</th>
-            <th>籍贯</th>
-            <th>QQ</th>
-            <th>邮箱</th>
-            <th>操作</th>
-        </tr>
-        <c:forEach items="${users}" var="user" varStatus="s">
-            <tr>
-                <td><input name="" type="checkbox"></td>
-                <td>${s.count}</td>
-                <td>${user.name}</td>
-                <td>${user.gender}</td>
-                <td>${user.age}</td>
-                <td>${user.address}</td>
-                <td>${user.qq}</td>
-                <td>${user.email}</td>
-                <td><a class="btn btn-default btn-sm" href="${pageContext.request.contextPath}/findUserServlet?id=${user.id}">修改</a>
-                    <a class="btn btn-default btn-sm" href="javascript:deleteUser(${user.id})">删除</a>
-                </td>
+<%--    将整个用户列表用一个表单进行封装，以方便实现删除选中功能.
+        当选中checkbox后，提交该表单，会自动将id信息提交到action路径,提交功能通过“删除选中”按钮来实现。
+--%>
+    <form action="${pageContext.request.contextPath}/deleteSelectedServlet" method="post" id="form">
+        <table border="1" class="table table-bordered table-hover">
+            <tr class="success">
+                <th><input type="checkbox" id="firstCb"></th>
+                <th>编号</th>
+                <th>姓名</th>
+                <th>性别</th>
+                <th>年龄</th>
+                <th>籍贯</th>
+                <th>QQ</th>
+                <th>邮箱</th>
+                <th>操作</th>
             </tr>
-        </c:forEach>
-    </table>
+            <c:forEach items="${pb.list}" var="user" varStatus="s">
+                <tr>
+                    <td><input type="checkbox" name="checkbox_id" value="${user.id}"></td>
+                    <td>${s.count}</td>
+                    <td>${user.name}</td>
+                    <td>${user.gender}</td>
+                    <td>${user.age}</td>
+                    <td>${user.address}</td>
+                    <td>${user.qq}</td>
+                    <td>${user.email}</td>
+                    <td><a class="btn btn-default btn-sm" href="${pageContext.request.contextPath}/findUserServlet?id=${user.id}">修改</a>
+                        <a class="btn btn-default btn-sm" href="javascript:deleteUser(${user.id})">删除</a>
+                    </td>
+                </tr>
+            </c:forEach>
+        </table>
+    </form>
     <div style="float: left">
         <nav aria-label="Page navigation">
             <ul class="pagination">
@@ -96,18 +137,18 @@
                         <span aria-hidden="true">&laquo;</span>
                     </a>
                 </li>
-                <li><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
+                <c:forEach begin="1" end="${pb.totalPage}" var="i">
+                    <li><a href="${pageContext.request.contextPath}/findUserByPageServlet?currentPage=${i}&rows=5">
+                            ${i}
+                        </a>
+                    </li>
+                </c:forEach>
                 <li>
                     <a href="#" aria-label="Next">
                         <span aria-hidden="true">&raquo;</span>
                     </a>
-
                 </li>
-                <span style="font-size: 25px;margin-left: 5px;">共16条记录，共四页</span>
+                <span style="font-size: 25px;margin-left: 5px;">共${pb.totalCount}条记录，共${pb.totalPage}页</span>
 
             </ul>
         </nav>
