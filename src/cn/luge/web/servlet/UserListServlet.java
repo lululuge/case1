@@ -15,6 +15,7 @@ import java.util.List;
 @WebServlet("/userListServlet")
 public class UserListServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("utf-8");
         // 调用service查询所有用户
         UserService service = new UserServiceImpl();
         List<User> users = service.findAll();

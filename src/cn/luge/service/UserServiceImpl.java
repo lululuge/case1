@@ -6,6 +6,7 @@ import cn.luge.domain.PageBean;
 import cn.luge.domain.User;
 
 import java.util.List;
+import java.util.Map;
 
 public class UserServiceImpl implements UserService {
     // 调用dao完成查询
@@ -51,7 +52,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public PageBean<User> findUserByPage(String currentPage_str, String rows_str) {
+    public PageBean<User> findUserByPage(String currentPage_str, String rows_str, Map<String, String[]> condition) {
         // 将两个字符串类型参数转为int类型
         int currentPage = Integer.parseInt(currentPage_str);
         int rows = Integer.parseInt(rows_str);
@@ -61,15 +62,17 @@ public class UserServiceImpl implements UserService {
         pb.setCurrentPage(currentPage);
         pb.setRows(rows);
         // 调用dao查询totalCount,并设置该属性
-        int totalCount = dao.findTotalCount();
+        int totalCount = dao.findTotalCount(condition);
         pb.setTotalCount(totalCount);
         // 调用dao查询list<User>,并设置该属性
         int start = (currentPage - 1) * rows;
-        List<User> list = dao.findByPage(start, rows);
+        List<User> list = dao.findByPage(start, rows, condition);
         pb.setList(list); // 参数分别是开始索引和每页的条数
         // 设置总的页码数
         int totalPage = (totalCount % rows) == 0 ? (totalCount / rows) : (totalCount / rows + 1);
         pb.setTotalPage(totalPage);
         return pb;
     }
+
+
 }

@@ -4,6 +4,7 @@ import cn.luge.domain.PageBean;
 import cn.luge.domain.User;
 
 import java.util.List;
+import java.util.Map;
 
 public interface UserService {
     List<User> findAll();
@@ -20,5 +21,6 @@ public interface UserService {
 
     void deleteSelectedUsers(String[] ids);
 
-    PageBean<User> findUserByPage(String currentPage_str, String rows_str);
+    PageBean<User> findUserByPage(String currentPage_str, String rows_str, Map<String, String[]> condition);
+
 }

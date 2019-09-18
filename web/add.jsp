@@ -34,8 +34,8 @@
 
         <div class="form-group">
             <label>性别：</label>
-            <input type="radio" name="gender" value="male" checked="checked"/>male
-            <input type="radio" name="gender" value="female"/>female
+            <input type="radio" name="gender" value="男" checked="checked"/>男
+            <input type="radio" name="gender" value="女"/>女
         </div>
 
         <div class="form-group">
@@ -46,14 +46,13 @@
         <div class="form-group">
             <label for="address">籍贯：</label>
             <select name="address" class="form-control" id="address">
-                <option value="beijing">beijing</option>
-                <option value="tianjin">tianjin</option>
-                <option value="shanghai">shanghai</option>
-                <option value="chongqing">chongqing</option>
-                <option value="hebei">hebei</option>
-                <option value="shanxi">shanxi</option>
-                <option value="liaoning">liaoning</option>
-                <option value="jilin">jilin</option>
+                <option value="中国">中国</option>
+                <option value="美国">美国</option>
+                <option value="澳大利亚">澳大利亚</option>
+                <option value="西班牙">西班牙</option>
+                <option value="俄罗斯">俄罗斯</option>
+                <option value="德国">德国</option>
+                <option value="英国">英国</option>
             </select>
         </div>
 
@@ -70,7 +69,7 @@
         <div class="form-group" style="text-align: center">
             <input class="btn btn-primary" type="submit" value="提交" />
             <input class="btn btn-default" type="reset" value="重置" />
-            <input class="btn btn-default" type="button" value="返回" />
+<%--            <input class="btn btn-default" type="button" value="返回" />--%>
         </div>
     </form>
 </div>

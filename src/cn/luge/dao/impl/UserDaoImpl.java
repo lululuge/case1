@@ -6,7 +6,10 @@ import cn.luge.util.JDBCUtils;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class UserDaoImpl implements UserDao {
     // 使用JDBC操作数据库
@@ -59,14 +62,63 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public int findTotalCount() {
-        String sql = "select count(*) from user";
-        return template.queryForObject(sql, Integer.class);
+    public int findTotalCount(Map<String, String[]> condition) {
+        // 定义一个基础查询语句，以便于后续的拼接
+        String sql = "select count(*) from user where 1 = 1";
+        // 用于sql语句拼接
+        StringBuilder sb = new StringBuilder(sql);
+        // 遍历condition
+        Set<String> keys = condition.keySet();
+        // 定义一个list存储value,作为参数列表给？赋值
+        List<Object> params = new ArrayList<Object>();
+        for (String key : keys) {
+            if (key.equals("currentPage") || key.equals("rows")) {
+                continue;
+            }
+            // 已知condition中的值都是单个的
+            String value = condition.get(key)[0];
+            // 判断value是否有值
+            if (value != null && ! "".equals(value)) {
+                // 有值,则拼接sql语句
+                sb.append(" and " + key + " like ?");
+                params.add("%" + value + "%");
+            }
+        }
+//        System.out.println(sb.toString());
+//        System.out.println(params);
+//        System.out.println(template.queryForObject(sb.toString(), Integer.class, params.toArray()));
+        return template.queryForObject(sb.toString(), Integer.class, params.toArray());
     }
 
     @Override
-    public List<User> findByPage(int start, int rows) {
-        String sql = "select * from user limit ? , ?";
-        return template.query(sql, new BeanPropertyRowMapper<User>(User.class), start, rows);
+    public List<User> findByPage(int start, int rows, Map<String, String[]> condition) {
+//        String sql = "select * from user limit ?, ?";
+        // 定义一个基础查询语句，以便于后续的拼接
+        String sql = "select * from user where 1 = 1";
+        // 用于sql语句拼接
+        StringBuilder sb = new StringBuilder(sql);
+        // 遍历condition
+        Set<String> keys = condition.keySet();
+        // 定义一个list存储value,作为参数列表给？赋值
+        List<Object> params = new ArrayList<Object>();
+        for (String key : keys) {
+            if (key.equals("currentPage") || key.equals("rows")) {
+                continue;
+            }
+            // 已知condition中的值都是单个的
+            String value = condition.get(key)[0];
+            // 判断value是否有值
+            if (value != null && ! "".equals(value)) {
+                // 有值,则拼接sql语句
+                sb.append(" and " + key + " like ?");
+                params.add("%" + value + "%");
+            }
+        }
+        sb.append(" limit ?, ? ");
+        params.add(start);
+        params.add(rows);
+        return template.query(sb.toString(), new BeanPropertyRowMapper<User>(User.class), params.toArray());
     }
+
+
 }

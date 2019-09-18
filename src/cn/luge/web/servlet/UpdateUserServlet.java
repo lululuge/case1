@@ -33,8 +33,8 @@ public class UpdateUserServlet extends HttpServlet {
         // 调用service进行修改
         UserService service = new UserServiceImpl();
         service.updateUser(user);
-        // 跳转到UserListServlet
-        response.sendRedirect(request.getContextPath() + "/userListServlet");
+        // 跳转到FindUserByPageServlet
+        response.sendRedirect(request.getContextPath() + "/findUserByPageServlet");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -27,13 +27,13 @@
 
         <div class="form-group">
             <label>性别：</label>
-            <c:if test="${user.gender == 'male'}">
-                <input type="radio" name="gender" value="male" checked/>male
-                <input type="radio" name="gender" value="female"  />female
+            <c:if test="${user.gender == '男'}">
+                <input type="radio" name="gender" value="男" checked/>男
+                <input type="radio" name="gender" value="女"  />女
             </c:if>
-            <c:if test="${user.gender == 'female'}">
-                <input type="radio" name="gender" value="male" />male
-                <input type="radio" name="gender" value="female" checked />female
+            <c:if test="${user.gender == '女'}">
+                <input type="radio" name="gender" value="男" />男
+                <input type="radio" name="gender" value="女" checked />女
             </c:if>
 
         </div>
@@ -46,92 +46,74 @@
         <div class="form-group">
             <label for="address">籍贯：</label>
             <select name="address" id="address" class="form-control" >
-                <c:if test="${user.address == 'beijing'}">
-                    <option value="beijing" selected>beijing</option>
-                    <option value="tianjin">tianjin</option>
-                    <option value="shanghai">shanghai</option>
-                    <option value="chongqing">chongqing</option>
-                    <option value="hebei">hebei</option>
-                    <option value="shanxi">shanxi</option>
-                    <option value="liaoning">liaoning</option>
-                    <option value="jilin">jilin</option>
+                <c:if test="${user.address == '中国'}">
+                    <option value="中国" selected>中国</option>
+                    <option value="美国">美国</option>
+                    <option value="澳大利亚">澳大利亚</option>
+                    <option value="西班牙">西班牙</option>
+                    <option value="俄罗斯">俄罗斯</option>
+                    <option value="德国">德国</option>
+                    <option value="英国">英国</option>
                 </c:if>
 
-                <c:if test="${user.address == 'tianjin'}">
-                    <option value="beijing" >beijing</option>
-                    <option value="tianjin" selected>tianjin</option>
-                    <option value="shanghai">shanghai</option>
-                    <option value="chongqing">chongqing</option>
-                    <option value="hebei">hebei</option>
-                    <option value="shanxi">shanxi</option>
-                    <option value="liaoning">liaoning</option>
-                    <option value="jilin">jilin</option>
+                <c:if test="${user.address == '美国'}">
+                    <option value="中国">中国</option>
+                    <option value="美国" selected>美国</option>
+                    <option value="澳大利亚">澳大利亚</option>
+                    <option value="西班牙">西班牙</option>
+                    <option value="俄罗斯">俄罗斯</option>
+                    <option value="德国">德国</option>
+                    <option value="英国">英国</option>
                 </c:if>
 
-                <c:if test="${user.address == 'shanghai'}">
-                    <option value="beijing">beijing</option>
-                    <option value="tianjin">tianjin</option>
-                    <option value="shanghai" selected>shanghai</option>
-                    <option value="chongqing">chongqing</option>
-                    <option value="hebei">hebei</option>
-                    <option value="shanxi">shanxi</option>
-                    <option value="liaoning">liaoning</option>
-                    <option value="jilin">jilin</option>
+                <c:if test="${user.address == '澳大利亚'}">
+                    <option value="中国">中国</option>
+                    <option value="美国">美国</option>
+                    <option value="澳大利亚" selected>澳大利亚</option>
+                    <option value="西班牙">西班牙</option>
+                    <option value="俄罗斯">俄罗斯</option>
+                    <option value="德国">德国</option>
+                    <option value="英国">英国</option>
                 </c:if>
 
-                <c:if test="${user.address == 'chongqing'}">
-                    <option value="beijing">beijing</option>
-                    <option value="tianjin">tianjin</option>
-                    <option value="shanghai">shanghai</option>
-                    <option value="chongqing" selected>chongqing</option>
-                    <option value="hebei">hebei</option>
-                    <option value="shanxi">shanxi</option>
-                    <option value="liaoning">liaoning</option>
-                    <option value="jilin">jilin</option>
+                <c:if test="${user.address == '西班牙'}">
+                    <option value="中国">中国</option>
+                    <option value="美国">美国</option>
+                    <option value="澳大利亚">澳大利亚</option>
+                    <option value="西班牙" selected>西班牙</option>
+                    <option value="俄罗斯">俄罗斯</option>
+                    <option value="德国">德国</option>
+                    <option value="英国">英国</option>
                 </c:if>
 
-                <c:if test="${user.address == 'hebei'}">
-                    <option value="beijing" >beijing</option>
-                    <option value="tianjin" >tianjin</option>
-                    <option value="shanghai">shanghai</option>
-                    <option value="chongqing">chongqing</option>
-                    <option value="hebei" selected>hebei</option>
-                    <option value="shanxi">shanxi</option>
-                    <option value="liaoning">liaoning</option>
-                    <option value="jilin">jilin</option>
+                <c:if test="${user.address == '俄罗斯'}">
+                    <option value="中国">中国</option>
+                    <option value="美国">美国</option>
+                    <option value="澳大利亚">澳大利亚</option>
+                    <option value="西班牙">西班牙</option>
+                    <option value="俄罗斯" selected>俄罗斯</option>
+                    <option value="德国">德国</option>
+                    <option value="英国">英国</option>
                 </c:if>
 
-                <c:if test="${user.address == 'shanxi'}">
-                    <option value="beijing" >beijing</option>
-                    <option value="tianjin" >tianjin</option>
-                    <option value="shanghai">shanghai</option>
-                    <option value="chongqing">chongqing</option>
-                    <option value="hebei">hebei</option>
-                    <option value="shanxi" selected>shanxi</option>
-                    <option value="liaoning">liaoning</option>
-                    <option value="jilin">jilin</option>
+                <c:if test="${user.address == '德国'}">
+                    <option value="中国">中国</option>
+                    <option value="美国">美国</option>
+                    <option value="澳大利亚">澳大利亚</option>
+                    <option value="西班牙">西班牙</option>
+                    <option value="俄罗斯">俄罗斯</option>
+                    <option value="德国" selected>德国</option>
+                    <option value="英国">英国</option>
                 </c:if>
 
-                <c:if test="${user.address == 'liaoning'}">
-                    <option value="beijing" >beijing</option>
-                    <option value="tianjin" >tianjin</option>
-                    <option value="shanghai">shanghai</option>
-                    <option value="chongqing">chongqing</option>
-                    <option value="hebei" >hebei</option>
-                    <option value="shanxi">shanxi</option>
-                    <option value="liaoning" selected>liaoning</option>
-                    <option value="jilin">jilin</option>
-                </c:if>
-
-                <c:if test="${user.address == 'jilin'}">
-                    <option value="beijing" >beijing</option>
-                    <option value="tianjin" >tianjin</option>
-                    <option value="shanghai">shanghai</option>
-                    <option value="chongqing">chongqing</option>
-                    <option value="hebei" >hebei</option>
-                    <option value="shanxi">shanxi</option>
-                    <option value="liaoning">liaoning</option>
-                    <option value="jilin" selected>jilin</option>
+                <c:if test="${user.address == '英国'}">
+                    <option value="中国">中国</option>
+                    <option value="美国">美国</option>
+                    <option value="澳大利亚">澳大利亚</option>
+                    <option value="西班牙">西班牙</option>
+                    <option value="俄罗斯">俄罗斯</option>
+                    <option value="德国">德国</option>
+                    <option value="英国" selected>英国</option>
                 </c:if>
 
             </select>
@@ -150,7 +132,7 @@
         <div class="form-group" style="text-align: center">
             <input class="btn btn-primary" type="submit" value="提交"/>
             <input class="btn btn-default" type="reset" value="重置"/>
-            <input class="btn btn-default" type="button" value="返回"/>
+<%--            <input class="btn btn-default" type="button" value="返回"/>--%>
         </div>
     </form>
 </div>
